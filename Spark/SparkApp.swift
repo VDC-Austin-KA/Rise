@@ -182,6 +182,28 @@ struct CourseView: View {
                     }
                 }
             }
+            if let videos = Content.videos[course.id] {
+                Section("Watch") {
+                    ForEach(videos) { v in
+                        Link(destination: URL(string: "https://www.youtube.com/watch?v=\(v.id)")!) {
+                            HStack(spacing: 12) {
+                                AsyncImage(url: URL(string: "https://i.ytimg.com/vi/\(v.id)/mqdefault.jpg")) { img in
+                                    img.resizable().scaledToFill()
+                                } placeholder: {
+                                    Color.gray.opacity(0.3)
+                                }
+                                .frame(width: 96, height: 54)
+                                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                                .overlay(Image(systemName: "play.fill").foregroundStyle(.white).shadow(radius: 3))
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(v.title).font(.subheadline.weight(.semibold)).foregroundStyle(.primary).lineLimit(2)
+                                    Text(v.channel).font(.caption).foregroundStyle(.secondary)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         .navigationTitle(course.title)
     }

@@ -5,6 +5,7 @@ struct Course: Identifiable { let id, title, subtitle, icon: String; let lessons
 struct Option { let text: String; let best: Bool; let why: String }
 struct Scenario: Identifiable { let id, title, setup: String; let options: [Option] }
 struct Deck: Identifiable { let id, title, subtitle, icon: String; let items: [String] }
+struct Video: Identifiable { let id, title, channel: String }  // id = YouTube video id
 
 private func L(_ id: String, _ title: String, _ body: String, bad: String? = nil, good: String? = nil, drill: String) -> Lesson {
     Lesson(id: id, title: title, body: body, bad: bad, good: good, drill: drill)
@@ -312,6 +313,47 @@ enum Content {
             Swap self-judgment for curiosity. Instead of "What will they think of me?", ask "What's interesting about them?" Instead of "I'm bad at this," try "I'm getting better at this." Your inner voice sets your outer energy.
             """, drill: "Write down your most common negative thought before socializing. Write a curious replacement. Read it before you go out."),
         ]),
+    ]
+
+    // MARK: - Videos per course (ids verified against YouTube oEmbed, 2026-09-22)
+
+    static let videos: [String: [Video]] = [
+        "presence": [
+            Video(id: "cef35Fk7YD8", title: "You Are Contagious", channel: "Vanessa Van Edwards · TEDx"),
+            Video(id: "fA28iMu0lAc", title: "6 Habits That Make First Impressions Amazing", channel: "Charisma on Command"),
+            Video(id: "eIho2S0ZahI", title: "How to Speak So That People Want to Listen", channel: "Julian Treasure · TED"),
+        ],
+        "open": [
+            Video(id: "NzVrmGjsGWo", title: "How To Spark Interest In Every Conversation", channel: "Charisma on Command"),
+        ],
+        "flow": [
+            Video(id: "R1vskiVDwl4", title: "10 Ways to Have a Better Conversation", channel: "Celeste Headlee · TED"),
+            Video(id: "ITIjlB5Gj3A", title: "Do These 8 Things and People Will Want You Around", channel: "Charisma on Command"),
+        ],
+        "interesting": [
+            Video(id: "x7p329Z8MD0", title: "Homework for Life", channel: "Matthew Dicks · TEDx"),
+        ],
+        "humor": [
+            Video(id: "q0--oItSgUY", title: "How To Turn Anything Into A Witty Joke", channel: "Charisma on Command"),
+            Video(id: "6G7pNhZA0LU", title: "How To Easily Be Funnier In Conversations", channel: "Chris Williamson"),
+        ],
+        "intrigue": [
+            Video(id: "05vQ08uH-s0", title: "6 Flirting Habits Women Actually Love", channel: "Charisma on Command"),
+            Video(id: "3aYWvujaT6M", title: "Falling in Love Is the Easy Part", channel: "Mandy Len Catron · TED"),
+            Video(id: "d6wG_sAdP0U", title: "How I Hacked Online Dating", channel: "Amy Webb · TED"),
+            Video(id: "SBmzQixzi0g", title: "Hinge's Relationship Scientist Gives Dating Advice", channel: "Logan Ury · Chris Williamson"),
+            Video(id: "EFJsMK77dm0", title: "How To Make Dating Apps Human Again", channel: "Matthew Hussey"),
+            Video(id: "MntNpCJAq5k", title: "How to Take Photos for Tinder, Bumble & Hinge", channel: "Dater Help"),
+            Video(id: "Vp3D50dLdIA", title: "The Perfect Hinge Prompt Formula", channel: "WingMan Plus"),
+            Video(id: "mIU1Wi1Q1hM", title: "3 Playful Texts That Lead To A Date", channel: "Matthew Hussey"),
+            Video(id: "PNSzPazO9JQ", title: "These Texting Mistakes Keep You Single", channel: "Matthew Hussey"),
+        ],
+        "listen": [
+            Video(id: "XuMsG-PoIPE", title: "Master Labels, Mirrors & Questions", channel: "Chris Voss · Black Swan Group"),
+        ],
+        "confidence": [
+            Video(id: "-vZXgApsPCQ", title: "What I Learned from 100 Days of Rejection", channel: "Jia Jiang · TED"),
+        ],
     ]
 
     // MARK: - Practice scenarios
