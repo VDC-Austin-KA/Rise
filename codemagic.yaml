@@ -14,9 +14,10 @@ workflows:
       - name: Build
         script: |
           set -o pipefail
+          FORMAT=cat; command -v xcbeautify >/dev/null && FORMAT=xcbeautify
           xcodebuild archive -project Spark.xcodeproj -scheme Spark -configuration Release \
             -destination 'generic/platform=iOS' -archivePath build/Spark.xcarchive \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcbeautify
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | $FORMAT
       - name: Package IPA
         script: |
           set -e
@@ -25,6 +26,7 @@ workflows:
           zip -qry Spark-unsigned.ipa Payload && rm -rf Payload
     artifacts:
       - build/*.ipa
+      - /tmp/xcodebuild_logs/*.log
     publishing:
       email:
         recipients: [keithacker33@gmail.com]
