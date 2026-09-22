@@ -1,0 +1,27 @@
+# XcodeGen spec — `xcodegen generate` makes Spark.xcodeproj.
+name: Spark
+options:
+  bundleIdPrefix: com.spark
+  deploymentTarget:
+    iOS: "16.0"
+
+targets:
+  Spark:
+    type: application
+    platform: iOS
+    sources: [Spark]
+    scheme: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.spark.coach
+        PRODUCT_NAME: Spark
+        SWIFT_VERSION: "5.9"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Spark
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1"
